@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Title - Lisa's Dashboard</title>
+</head>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color:#2e4d77;
+}
+
+.pull-left{
+  float:left;
+}
+
+.pull-right{
+  float: right;
+}
+
+.d-flex {
+  display:flex;
+}
+
+.lesson {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.lesson h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.lesson p {
+    margin-bottom: 20px;
+}
+
+.story-image {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.Slide_Img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+
+
+
+
+
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#gameBoard {
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.taskSpace {
+  padding: 20px;
+    border: 2px solid #74e1e2;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.taskSpace:hover {
+  background-color: #ddf1f2;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#rollDice {
+  background-color: #ffcc00;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#rollDice:hover, #rollDice:focus {
+  font-size: 1.5rem;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#currentTask, #playerFunds {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+    text-align: center;
+}
+
+#currentTask {
+  border-left: 5px solid #74e1e2;
+}
+
+@media (max-width: 768px) {
+    #gameBoard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #rollDice {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #currentTask, #playerFunds {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #gameBoard {
+        grid-template-columns: 1fr;
+    }
+
+    #rollDice {
+        width: 75%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Ensure text sizes are readable and elements are navigable for screen readers and keyboard navigation */
+.Dice:focus, .taskSpace:focus {
+    outline: 3px dashed #ffcc00;
+    outline-offset: 3px;
+}
+
+#goalSetting {
+    margin: 20px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#financialGoal {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#setGoal {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#goalProgress {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+
+
+</style>
+<body>
+  <div class="lesson">
+    <section class="introduction">
+      <h2>Earning Money</h2>
+      
+      <h4>Lesson Guide</h4>
+      <audio controls>
+        <source src="/Audio Files/Earning Money Lisa Lesson - Guide.mp4" type="audio/mpeg">
+    </audio>
+
+      <p>
+        <section class="storytelling">
+        <h2>The Lemonade Venture</h2>
+        <h3>Chapter 1: The Idea</h3>
+        <img src="https://files.oaiusercontent.com/file-PBv4HHR5hIGEn5QixecyPoUI?se=2024-01-05T08%3A45%3A14Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D9a97e3c6-7afc-4e8b-9b1d-2f2548a827d5.webp&sig=6hrqgZLl7SUzDX4saeusMkQpemYmx0mvb/9S2o1JkI4%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Earning Money lisa Lesson - Chapter 1.mp4" type="audio/mpeg">
+      </audio>
+        <p>In the quaint, sun-kissed town of Sunnyville, nestled among lush gardens and winding lanes, two best friends, Mia and Jack, were spending a lazy summer afternoon. The sky was a brilliant blue, and the sun was like a golden orb, casting a warm glow over everything it touched. They were lounging under the large, ancient oak tree in Mia's backyard, which provided a cool, shady refuge from the heat. Mia's mom had brought them a pitcher of her homemade lemonade, known throughout the neighborhood for its perfect balance of sweetness and tang. As they sipped the refreshing drink, they chatted about everything from school to their favorite TV shows.</p>
+        <p>Suddenly, Mia's younger brother, Timmy, appeared at the back door. His usually bright face was clouded with disappointment. In his hand, he clutched a crumpled flyer showing a shiny new soccer ball. "It's the special edition ball used in the World Cup!" he exclaimed, but his excitement quickly faded. "But it's too expensive," he sighed, his shoulders drooping. Mia exchanged a glance with Jack. They both knew Timmy's passion for soccer; he had been playing since he could walk. The sight of his downcast eyes tugged at their hearts.</p>
+        <p>"What if we helped Timmy earn the money for it?" Jack said, his brain already ticking with ideas. Mia's face lit up, mirroring Jack's enthusiasm. "Yes! We can start a business! Something easy and fun for summer.They brainstormed ideas – a garage sale, a car wash, a dog-walking service – but nothing seemed quite right. Then, as Mia took another sip of lemonade, inspiration struck. "What about a lemonade stand? We already know everyone loves Mom's lemonade!"</p>
+        <p>Jack's eyes widened with excitement. "That's brilliant! It's hot out, everyone's looking for something cool to drink, and your mom's lemonade is the best!" They quickly presented the idea to Mia's mom, who not only agreed but also offered her full support. She provided them with her secret recipe and even helped them list the ingredients they would need.</p>
+        <p>Timmy, who had been listening quietly, suddenly beamed with hope. "Can I help too?" he asked eagerly. "Of course, you're our top executive in charge of customer happiness," Mia declared, ruffling his hair. The three of them huddled together, sketching out their plan. They calculated the cost of lemons, sugar, cups, and a sign. They discussed the location, settling on the park as the perfect spot with its constant stream of thirsty joggers and families. As the sun began to set, casting long shadows across the lawn, their plan was in place. They were filled with a sense of purpose and excitement. Little did they know, their small venture was about to teach them invaluable lessons in entrepreneurship, teamwork, and the joy of bringing a simple idea to life.        </p>
+        <br>
+        <h3>Chapter 2: The Plan</h3>
+        <img src="https://files.oaiusercontent.com/file-R8BYOyfe6oGBEIy0escB4pWI?se=2024-01-05T08%3A46%3A51Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dc43ddab9-7d53-4ba8-a11c-e575d97fa08e.webp&sig=II0DkxpTvhatOssVL8zEnKTuP8y0MA36qKCLt6FUKiM%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Earning Money Lisa Lesson - Chapter 2.mp4" type="audio/mpeg">
+      </audio>
+        <p>The next morning in Sunnyville dawned bright and clear, a perfect day for the beginning of an entrepreneurial adventure. Mia, Jack, and Timmy gathered early at Mia’s house, their minds buzzing with excitement and a touch of nervousness. Today, they were not just friends hanging out; they were business partners on a mission. The first order of business was pooling their resources. Jack brought his saved-up allowance, Mia had a little money from her last birthday, and Timmy contributed a few dollars from his piggy bank. Together, they had just enough to buy the initial supplies.</p>
+        <p>They set out for the local grocery store with a list meticulously crafted the previous day. As they walked, Mia briefed Timmy on the importance of choosing the right lemons. "They need to be ripe and juicy for the lemonade to taste just right," she explained. At the store, they carefully selected the freshest lemons, a big bag of sugar, and a stack of disposable cups. Mia remembered her mom’s advice about not compromising on quality, especially for something as crucial as their main product. Jack, meanwhile, kept a close eye on their spending, ensuring they stayed within budget.</p>
+        <p>With their supplies in hand, they headed back to Mia's house to set up their stand. They chose a spot under the oak tree, visible from the street and offering shade to their future customers. Timmy eagerly helped paint a bright, colorful sign that read, "Mia & Jack's Refreshing Lemonade!" adding little drawings of lemons and sunshine. As they worked, they discussed pricing. "We need to make sure we cover our costs and make a profit, but it also has to be affordable," Jack pointed out. After some calculations, they settled on a price that seemed fair and would allow them to reach their financial goal.</p>
+        <p>Mia took charge of preparing the lemonade, following her mom’s recipe to the letter. Jack organized the cups and set up a small cash box, while Timmy arranged the sign and decorations, making their stand look inviting and professional. Their final task was to discuss roles. Mia would be in charge of making the lemonade, Jack would handle the sales and finances, and Timmy, with his infectious enthusiasm, would attract customers and assist with serving. As the afternoon sun climbed higher in the sky, their lemonade stand, with its bright sign and inviting setup, stood ready. They looked at each other, a mix of pride and anticipation in their eyes. This was their venture, their little slice of the business world, and they were determined to make it a success.</p>
+        <br>
+        <h3>Chapter 3: The Opening</h3>
+        <img src="https://files.oaiusercontent.com/file-woNyJbmXuQjXbnVpXC4X8aan?se=2024-01-05T08%3A46%3A51Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D33949f8f-1231-4e48-a168-373ea442743c.webp&sig=wBd2%2B5sszrbEc2PpNJCe2GTIK1OyirNE7cLtROK1H/c%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Earning Money Lisa Lesson - Chapter 3.mp4" type="audio/mpeg">
+      </audio>
+        <p>On the first day of their lemonade venture, Mia, Jack, and Timmy awoke to a morning that promised success. The sun shone brilliantly, casting a warm glow that seemed to ignite their entrepreneurial spirits. They met under the oak tree, where their stand was set up, ready to welcome the day's customers. Timmy, appointed as the chief of customer attraction, took his role seriously. He donned a bright yellow hat and picked up a hand-painted sign that read, "Best Lemonade in Town!" He paraded around the neighborhood, his youthful energy drawing smiles and curious glances.</p>
+        <p>Mia was the master of the lemonade, her hands skillfully mixing the perfect blend of tangy and sweet. The aroma of fresh lemons filled the air, creating an inviting atmosphere. Jack, with his sharp mind for numbers, took his place behind the cash box, ready to greet their first customers with a warm smile. Their first customer was Mrs. Jenkins, the elderly librarian from the local library, who was out for her morning walk. Intrigued by Timmy's enthusiastic advertising, she decided to give their lemonade a try. As she took her first sip, her eyes lit up with delight. "Oh, my! This is simply wonderful!" she exclaimed. True to her word, she spread the news to her friends and fellow walkers.</p>
+        <p>The morning progressed with a steady stream of customers. Some were regulars from the neighborhood, while others were attracted by Timmy's energetic advertising or the enticing smell of fresh lemonade. Mia, Jack, and Timmy worked seamlessly together, their initial nervousness replaced by confidence and joy. However, their smooth operation faced its first challenge in the early afternoon. A rival lemonade stand set up by some kids from the next street over started attracting a portion of their customers. Mia noticed the dip in their sales and called a quick team meeting. "We need to differentiate ourselves," Mia suggested, her mind racing for solutions. "What if we offer a special deal? Like a loyalty card – buy five cups, get the sixth one free?"</p>
+        <p>Jack, always the practical one, crunched the numbers and nodded in agreement. "It works with our budget, and it encourages repeat customers." Timmy, ever the creative spirit, added, "We could also introduce a 'Flavor of the Day' – something unique that no one else has!". Inspired by these ideas, they quickly implemented the changes. Timmy updated their sign to include the new offers, and Mia experimented with a new lemonade flavor, adding a hint of mint. Their adaptability paid off. Customers, intrigued by the new offerings, returned to their stand, and many were excited about the loyalty program. Word of their unique flavors and excellent service spread, and soon, their stand was bustling with activity again. </p>
+        <p>As the sun began to set, they counted their earnings and found that they had surpassed their expectations for the day. Their faces beamed with pride and accomplishment. They had not only overcome their first challenge but had also learned valuable lessons in adaptability and innovation.</p>
+        <br>
+        <h3>Chapter 4: The Challenge</h3>
+        <img src="https://files.oaiusercontent.com/file-NwMZGpLLIlQyw0EUxwCeKOJS?se=2024-01-05T08%3A46%3A51Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dedb0fa21-bbdb-4cf6-b03e-3df767b96c9f.webp&sig=RkUCJk5D46SZIa92JQIMnSywKdp2NfwpZJnY/PAR28s%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Earning Money Lisa Lesson - Chapter 4.mp4" type="audio/mpeg">
+      </audio>
+        <p>The following days at the lemonade stand were filled with laughter, learning, and a growing sense of camaraderie among Mia, Jack, and Timmy. Their stand had become a local hit in Sunnyville, and they were well on their way to reaching their financial goal for Timmy's soccer ball. Each day brought new faces, more smiles, and the satisfying clink of coins in their cash box. However, as often happens in life, their smooth sailing was met with an unexpected challenge. On the fourth day, the bright and sunny skies of Sunnyville were replaced with dark, menacing clouds. By mid-morning, a steady rain began to fall, dampening the streets and their hopes.</p>
+        <p>Initially undeterred, they set up their stand, hoping the rain would pass. But as the hours ticked by, it became clear that the weather was not going to improve. The once-busy park was now deserted, and their stand stood forlornly under the oak tree, with no customers in sight. Disheartened, they huddled under their small canopy, watching their dreams of soccer balls and successful sales wash away with the rain. Timmy's shoulders slumped, and Mia bit her lip, trying to think of a solution. It was Jack who broke the silence. "We can't control the weather, but we can adapt to it. Let's think of a plan B." Mia's eyes suddenly brightened. "The bakery!" she exclaimed. "Mr. Brown's bakery is always full of people looking for a treat on rainy days. What if we ask him if we can set up inside?"</p>
+        <p>Wasting no time, they packed up their stand and rushed to the bakery, where the warm aroma of fresh bread and pastries welcomed them. Mr. Brown, the kindly owner, listened to their proposal and, impressed by their initiative, agreed to let them set up a small stand near the entrance. The transition was a success. The bakery's customers, drawn in by the smell of freshly baked goods, were delighted to find refreshing lemonade available. Mia, Jack, and Timmy quickly adapted their sales pitch, emphasizing the lemonade's ability to brighten a gloomy day. Their adaptability and resilience paid off. Not only did they recoup the day's potential losses, but they also gained new customers who promised to visit their stand in the park on sunnier days. They had turned a setback into an opportunity, learning the invaluable lesson that every problem holds the potential for a creative solution.</p>
+        <p>As they counted their earnings at the end of the day, their spirits were high. They had faced adversity and emerged stronger, more confident, and more united in their venture.</p>
+        <br>
+        <h3>Chapter 5: The Success</h3>
+        <img src="https://files.oaiusercontent.com/file-SgT5Kmcm1cXLlFnswcYtKmw2?se=2024-01-05T08%3A47%3A07Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dcbb86867-cd85-4dc3-aebe-fd05df7d58ec.webp&sig=iKn4AKkwoCGRe/Itc7sttig8mxyABGGTiyAq54zf%2BWc%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Earning Money Lisa Lesson - Chapter 5.mp4" type="audio/mpeg">
+      </audio>
+        <p>In the days that followed their successful pivot to Mr. Brown’s bakery, Mia, Jack, and Timmy’s lemonade stand continued to thrive. The experience at the bakery had given them a new perspective on their small business. They realized that with a little creativity and a lot of determination, they could overcome almost any obstacle. Encouraged by their recent success, they began to implement more ideas to enhance their stand. They introduced new lemonade flavors like raspberry and peach, which became instant hits. They also started using eco-friendly cups, responding to a suggestion from an environmentally conscious customer. This small change not only made their business more sustainable but also attracted a new demographic of customers who appreciated their commitment to the environment.</p>
+        <p>Word of their delicious lemonade and their innovative approach to business spread throughout Sunnyville. The local newspaper even featured a story about them, highlighting their entrepreneurial spirit and community impact. This publicity brought more people to their stand, eager to support these young, enterprising individuals. As summer progressed, so did their savings. Finally, one sunny afternoon, as they counted their earnings, they realized they had reached their goal. They had enough money for Timmy’s soccer ball, with a considerable amount left over. Their faces lit up with joy and pride. They had started with a simple idea to help a friend, and it had grown into something much bigger and more meaningful. Timmy, beaming with happiness, bought his coveted soccer ball. He was the embodiment of gratitude, hugging his sister and Jack, repeatedly thanking them for making his dream come true.</p>
+        <p>With the extra money, Mia, Jack, and Timmy decided to invest back into their business, buying a better stand and more supplies. They also chose to give back to their community by donating a portion of their earnings to the local animal shelter. This decision brought them immense satisfaction, knowing that their success was also contributing to a good cause. As the summer drew to a close, they reflected on their journey. They had learned about the nuances of running a business, the importance of teamwork, and the joy of seeing their efforts bear fruit. They had also experienced firsthand the impact of adaptability, community engagement, and social responsibility. Their lemonade stand was more than just a summer project; it had become a cherished part of their childhood. They promised to continue their venture next summer, filled with new ideas and the same enduring spirit.</p>
+        <p>And so, under the shade of the old oak tree, the lemonade stand of Mia, Jack, and Timmy became a symbol of young entrepreneurship, friendship, and the power of a community brought together by a simple, refreshing glass of lemonade.</p>
+        <h3><italic>Epilogue: The Lemonade Legacy</italic></h3>
+        <img src="https://files.oaiusercontent.com/file-VmeI3OsIYmNDmGCZZTmsd5r8?se=2024-01-05T09%3A54%3A50Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D38d12102-b51c-4e24-80a4-5c9e9d3be656.webp&sig=%2B9k6Ud1sAaBrb5QMy8ABlUB9UnHatJc6H5nAxZORGq8%3D" class="story-image">
+        <audio controls>
+          <source src="/Audio Files/Epilogue of Earning Money Lisa Lesson - final conclusion.mp4" type="audio/mpeg">
+      </audio>
+      <p>As the leaves began to turn golden and the air grew crisp, signaling the end of summer in Sunnyville, the lemonade stand under the old oak tree closed its shutters for the season. But the legacy of Mia, Jack, and Timmy's small venture was just beginning to blossom. Their lemonade stand had become more than a summer pastime; it was a community landmark that brought together people from all walks of life. It was a place where neighbors met, friendships were formed, and laughter was shared. Their commitment to quality, sustainability, and community involvement had set a new standard for local businesses, inspiring others to follow suit.</p>
+      <p>Mia, Jack, and Timmy continued to nurture their entrepreneurial spirit, each summer bringing new ideas and improvements to their stand. They started a trend of young entrepreneurship in Sunnyville, with other children setting up their ventures, from homemade cookie stalls to handcrafted jewelry stands. As they grew older, their paths began to diverge, with each pursuing their dreams and ambitions. Yet, the lessons they learned from their lemonade stand remained a guiding force in their lives. Mia delved into environmental studies, eager to make a difference in the world. Jack found his passion in finance and economics, and Timmy continued to excel in sports, but never forgot the community that supported his first soccer ball. Each year, when the lemonade stand reopened, it was a reunion not just for the three friends but for the whole community. It was a reminder of the power of a simple idea, the strength of friendship, and the impact of giving back.</p>
+      <p>Their lemonade stand had started as a means to buy a soccer ball, but it turned into a journey of growth, learning, and community impact. The legacy of the lemonade stand under the oak tree lived on, a testament to the fact that even the smallest ventures can spark significant change.</p>
+    </section>
+  </p>
+    </section>
+
+
+    <section class="interactive-learning">
+      <h2>Interactive Learning</h2>
+<div style="width:100%" class="d-flex">
+  <div style="width:50%"> 
+      <h3>Freelance Graphic Design Services</h3>
+      <p style="font-size: 20px;">Anna, a college student with a talent for graphic design, realizes she can monetize her skills to support her education. She creates a portfolio of her work and signs up on freelance platforms like Upwork and Fiverr. Anna starts by offering logo design, social media graphics, and custom illustrations. She sets competitive prices and gradually builds her reputation by delivering high-quality work on time. As her portfolio grows, so does her client base, leading to more significant projects and higher earnings.</p>
+  </div>
+    <div style="width:50%">
+      <div class="slideshowcontainer1">
+        <div class="mySlides fade custom_slides1">
+          <div class="numbertext">1 / 10</div>
+          <img src="https://files.oaiusercontent.com/file-Z6kqzRs6Z39jhjchC5GOIRcl?se=2024-01-05T12%3A52%3A10Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D162f1924-8c40-46c0-9458-bde71cb32d34.webp&sig=nLkjq87CH7/dmcO0Xllb7RiXNPnxvkI5dmUGBLdXS/I%3D" class="Slide_Img" style="width:80%">
+        </div>
+      
+        <div class="mySlides fade custom_slides1">
+          <div class="numbertext">2 / 10</div>
+          <img src="https://files.oaiusercontent.com/file-XbNyYMGDlqZZdzqi6KVrB3tn?se=2024-01-05T12%3A52%3A11Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Ddb1f2ef9-9f40-42ab-9142-b5313d04c8b3.webp&sig=qymgdySltRgInxCDvATuCTeJJRWfznaJAIde850nMjw%3D" class="Slide_Img" style="width:80%">
+        </div>
+      
+        <div class="mySlides fade custom_slides1">
+          <div class="numbertext">3 / 10</div>
+          <img src="https://files.oaiusercontent.com/file-mGh7AH455djzaFI0TmNcsMnd?se=2024-01-05T12%3A52%3A11Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5de9d42b-2a70-4e92-a11b-a012fdbee8f2.webp&sig=9R0Rh8n72Z0s2SeHz7i1uJ4IQk6JCgl4Tq1JMOCJA4E%3D" class="Slide_Img" style="width:80%">
+        </div>
+
+        <div class="mySlides fade custom_slides1">
+          <div class="numbertext">4 / 10</div>
+          <img src="https://files.oaiusercontent.com/file-kcbB6J6kKYt9meQrbGdaOsCi?se=2024-01-05T12%3A52%3A11Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D58bbab10-c795-492e-9d4a-57c7aa96f715.webp&sig=5TtbJK/72RXekhX4r07Zi2g1pNjti3P2RBDjSIE0ZnE%3D" class="Slide_Img" style="width:80%">
+        </div>
+
+        <div class="mySlides fade custom_slides1">
+          <div class="numbertext">5 / 10</div>
+          <img src="https://files.oaiusercontent.com/file-OOtcQOiHGdTeGHSs1OVfuIwh?se=2024-01-05T12%3A52%3A11Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D8deaf340-9648-4fe2-9230-49617f37ac9b.webp&sig=%2BqWy3HQl5i5tRgVE0DrrYs5XWas5bZ70BftdAe42AW0%3D" class="Slide_Img" style="width:80%">
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+
+    </div>
+    </div>
+    
+    <br><br>
+  
+    <div style="width:100%" class="d-flex">
+      <div style="width:50%">
+        <div class="slideshowcontainer2">
+          <div class="mySlides fade custom_slides2">
+            <div class="numbertext">1 / 10</div>
+            <img src="https://files.oaiusercontent.com/file-sJ5S6DlMpcFPIZNQ1KyAMENA?se=2024-01-05T13%3A30%3A04Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5f43635e-808c-450c-9037-17ca26b96b4a.webp&sig=mxSKeHb/tbGZ5kEzoKt34lFamflmFXsyvLjlhRnm%2B8g%3D" class="Slide_Img" style="width:80%">
+          </div>
+        
+          <div class="mySlides fade custom_slides2">
+            <div class="numbertext">2 / 10</div>
+            <img src="https://files.oaiusercontent.com/file-CA1tsobmo3nW2GqMAApMPwh9?se=2024-01-05T13%3A30%3A32Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3De1337c5e-0391-450a-9dfd-8bf8e3b4a7f2.webp&sig=72rGymuBJ%2BNe4jFwqav%2Bnh51FTMYYcqneBGvl6PO6Zc%3D" class="Slide_Img" style="width:80%">
+          </div>
+        
+          <div class="mySlides fade custom_slides2">
+            <div class="numbertext">3 / 10</div>
+            <img src="https://files.oaiusercontent.com/file-Ql9VLbRemOVyixIyit4ERKeO?se=2024-01-05T13%3A30%3A51Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D654522dd-cd46-4562-9da8-893c6ef6a3b5.webp&sig=qAFM4PDSMZ%2BICBGP56dI8WfVQWRhkVlG/gp30LNMvQo%3D" class="Slide_Img" style="width:80%">
+          </div>
+  
+          <div class="mySlides fade custom_slides2">
+            <div class="numbertext">4 / 10</div>
+            <img src="https://files.oaiusercontent.com/file-LSLGRUWJg4z7Y3uxsPeelA86?se=2024-01-05T13%3A35%3A15Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Db796300d-d511-405a-8515-72f46332d3a9.webp&sig=DvXTMobKpGf83lDn/htRTRzI9TovaKfUin1wnJJadKI%3D" class="Slide_Img" style="width:80%">
+          </div>
+  
+          <div class="mySlides fade custom_slides2">
+            <div class="numbertext">5 / 10</div>
+            <img src="https://files.oaiusercontent.com/file-aHG9g3ZDDhv8S19AbFKOe0Uo?se=2024-01-05T13%3A35%3A15Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Da42e777d-44d9-4f7b-8057-63a4efe83a3d.webp&sig=9B0xnnLm1Yqify88jwCid1migyOSvJ1uhEff7u/xmlw%3D" class="Slide_Img" style="width:80%">
+          </div>
+  
+          <!-- Next and previous buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+  
+      </div>
+      <div style="width:50%"> 
+          <h3>Lawn Care and Landscaping Business</h3>
+          <p style="font-size: 20px;">After noticing many busy neighbors struggling to maintain their lawns, John, a high school student, decides to start a lawn care service. He begins with basic equipment: a lawnmower, trimmers, and gardening tools, most of which he already owns. John distributes flyers and uses social media to advertise his services, which include mowing, trimming, and general yard cleanup. He offers package deals and seasonal services. Over time, John's reliability and attention to detail earn him regular clients and referrals, expanding his business and income.</p>
+      </div>
+        </div>
+
+      <br><br>
+      
+        <div style="width:100%" class="d-flex">
+          <div style="width:50%"> 
+              <h3>Online Tutoring</h3>
+              <p style="font-size: 20px;">Sarah, a mathematics graduate, starts an online tutoring service to help students struggling with math. She sets up a simple website and profiles on social media platforms, offering one-on-one tutoring sessions via video calls. Sarah develops personalized lesson plans and practice exercises for her students. She markets her services by joining online parent forums and local community groups. Her patience and effective teaching methods lead to successful student outcomes, resulting in more clients and a steady source of income.</p>
+          </div>
+            <div style="width:50%">
+              <div class="slideshowcontainer1">
+                <div class="mySlides fade custom_slides3">
+                  <div class="numbertext">1 / 10</div>
+                  <img src="https://files.oaiusercontent.com/file-1gqjQP1COl4HRvReXbKXSODQ?se=2024-01-05T14%3A05%3A18Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D3f724c56-2995-4aad-b961-efd6d9f65156.webp&sig=FGUVldf6lIeeUp0FZhvfc5SYufxsKMsLxLzv/paqgiM%3D" class="Slide_Img" style="width:80%">
+                </div>
+              
+                <div class="mySlides fade custom_slides3">
+                  <div class="numbertext">2 / 10</div>
+                  <img src="https://files.oaiusercontent.com/file-o4jxNEDO7agl1OfdQa0IqydO?se=2024-01-05T14%3A05%3A19Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D34d466eb-cc75-40d2-8c33-1e9c7f4b9f15.webp&sig=3/xH7ke52nAhrAEdd%2BmnG%2BkLQPQRcFt3tGFTCY5YIsI%3D" class="Slide_Img" style="width:80%">
+                </div>
+              
+                <div class="mySlides fade custom_slides3">
+                  <div class="numbertext">3 / 10</div>
+                  <img src="https://files.oaiusercontent.com/file-g5IcqbhcllwuXUX7Fhlq3pj9?se=2024-01-05T14%3A05%3A18Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D8fe90f44-b88e-4d72-aa61-e5a47a9eb051.webp&sig=Y/JytSA4lYtz58B4lxG7MsCWcaUeO2Wlfu9psOYzy2k%3D" class="Slide_Img" style="width:80%">
+                </div>
+        
+                <div class="mySlides fade custom_slides3">
+                  <div class="numbertext">4 / 10</div>
+                  <img src="https://files.oaiusercontent.com/file-nrCkGjGg3Sq8VLoIiKv1tff4?se=2024-01-05T14%3A05%3A18Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D082a9101-b156-4eaa-824b-d8afdee97827.webp&sig=a8mDDIgYaVjPMGxaPavkNlbp3QsHH4pTbDHEiDvAivg%3D" class="Slide_Img" style="width:80%">
+                </div>
+        
+                <div class="mySlides fade custom_slides3">
+                  <div class="numbertext">5 / 10</div>
+                  <img src="https://files.oaiusercontent.com/file-FrAeDESTidCiIfuACalhMmkE?se=2024-01-05T14%3A09%3A11Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5ea661c5-3456-4ed6-86c8-ada3ad87a420.webp&sig=qBJ0u7YmjWKcqQx0h6DMqtjlk3HN/GtqGec8Tyhi9ck%3D" class="Slide_Img" style="width:80%">
+                </div>
+        
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              </div>
+        
+            </div>
+          </div>
+
+
+          <br><br>
+
+
+
+          <div style="width:100%" class="d-flex">
+              <div style="width:50%">
+                <div class="slideshowcontainer1">
+                  <div class="mySlides fade custom_slides4">
+                    <div class="numbertext">1 / 10</div>
+                    <img src="https://files.oaiusercontent.com/file-N5bQr6hHR9Lj9Ab4T2xM4yuE?se=2024-01-05T14%3A15%3A18Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D6f5d2b7e-733f-47ca-b9c3-cdb5d58aaa88.webp&sig=XkMd7p8cRbQKFlRDNJ/WtHhME4dfie7/0oPf4OfBgwA%3D" class="Slide_Img" style="width:80%">
+                  </div>
+                
+                  <div class="mySlides fade custom_slides4">
+                    <div class="numbertext">2 / 10</div>
+                    <img src="https://files.oaiusercontent.com/file-fTw9YnFzsPQllMUdtToQ1cTY?se=2024-01-05T14%3A15%3A45Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D1ba60ab8-0c71-4771-b3ad-b2b671f972b7.webp&sig=Ac9yohhhLghl7v50ToumqmAIqdZ2yjcPA3x5j3kbjuw%3D" class="Slide_Img" style="width:80%">
+                  </div>
+                
+                  <div class="mySlides fade custom_slides4">
+                    <div class="numbertext">3 / 10</div>
+                    <img src="https://files.oaiusercontent.com/file-gwoQwMP2JbjSore2xsjy8Bkf?se=2024-01-05T14%3A17%3A07Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D1b1aefa9-d43f-403d-b30a-c72612f4164d.webp&sig=6A0Pt7yLQ5aONLaK0aGLS1ivb5H1xHaxobAlkN/o7c4%3D" class="Slide_Img" style="width:80%">
+                  </div>
+          
+                  <div class="mySlides fade custom_slides4">
+                    <div class="numbertext">4 / 10</div>
+                    <img src="https://files.oaiusercontent.com/file-kfRFbqikus6mUvTm6CBvfKPZ?se=2024-01-05T14%3A16%3A17Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D7c9413fc-05dc-4294-8017-5dcc6cb2ddab.webp&sig=ZusEt7exYJuD4SRTM4UaqFC/NjUlgATGmFrK77VuCHU%3D" class="Slide_Img" style="width:80%">
+                  </div>
+          
+                  <div class="mySlides fade custom_slides4">
+                    <div class="numbertext">5 / 10</div>
+                    <img src="https://files.oaiusercontent.com/file-i4R2gr6tuxR0DoLPS1kTZWWD?se=2024-01-05T14%3A17%3A43Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D5c643c07-fe41-43e3-8c88-140c5436cd23.webp&sig=hByRQH%2BsGSGMjnwUDYEnKLOBhcbNbhWQ45INBmz6Zkw%3D" class="Slide_Img" style="width:80%">
+                  </div>
+          
+                  <!-- Next and previous buttons -->
+                  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+          
+              </div>
+
+              <div style="width:50%"> 
+                <h3>Handmade Crafts and Etsy Store</h3>
+                <p style="font-size: 20px;">David, an artist who creates handmade pottery and crafts, decides to turn his hobby into a business. He opens an Etsy store to reach a broader audience. He takes high-quality photographs of his work and writes detailed product descriptions. David uses social media to showcase his creative process, building an engaged follower base. He attends local craft fairs and markets to sell his products and gain more exposure. Over time, David's unique designs and quality craftsmanship attract a loyal customer base, boosting his sales and revenue.</p>
+            </div>
+            </div>
+
+
+            <br><br>
+  </section>
+
+  <br><br><br>
+
+
+  <div class="game-container">
+
+    <div id="goalSetting">
+      <h2>Set Your Financial Goal</h2>
+      <select id="financialGoal">
+          <option value="0">Select a goal</option>
+          <option value="50">Buy a Bike - $50</option>
+          <option value="30">Go to a Concert - $30</option>
+          <option value="20">Purchase a New Game - $20</option>
+          <!-- Add more options as needed -->
+      </select>
+      <button id="setGoal">Set Goal</button>
+  </div>
+  <div id="goalProgress">Goal Progress: $0</div>
+
+  <div id="gameBoard">
+    <div class="taskSpace" id="space1">Start</div>
+    <div class="taskSpace" id="space2">Task 1</div>
+    <div class="taskSpace" id="space3">Task 2</div>
+    <div class="taskSpace" id="space4">Task 3</div>
+    <div class="taskSpace" id="space5">Task 4</div>
+    <div class="taskSpace" id="space6">Task 5</div>
+    <div class="taskSpace" id="space7">Task 6</div>
+    <div class="taskSpace" id="space8">Task 7</div>
+    <div class="taskSpace" id="space9">Task 8 </div>
+    <div class="taskSpace" id="space10">Task 9</div>
+    <div class="taskSpace" id="space11">Task 10</div>
+    <div class="taskSpace" id="space12">Task 11</div>
+
+</div>
+<button class="Dice" id="rollDice">Roll Dice</button>
+<div id="currentTask"></div>
+<div id="playerFunds">Starting Funds: $10</div>
+  </div>
+</div>
+
+
+<a href="/Lisa Screens/YoungLisa.html" class="nav-link" id="back-to-dashboard">Back to Lisa Dashboard</a>
+  <a href="/Lisa Screens/spending-wisely.html" class="nav-link" id="next-lesson">Next Lesson: Needs and Wants</a>
+    </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const rollDiceButton = document.getElementById("rollDice");
+    const currentTask = document.getElementById("currentTask");
+    const playerFundsDisplay = document.getElementById("playerFunds");
+    let playerFunds = 10;
+    let currentPlayerPosition = 0;
+    const playerMarker = document.getElementById("playerMarker");
+    const storeItemsContainer = document.getElementById("storeItems");
+
+    rollDiceButton.addEventListener("click", () => {
+        // Simulate a dice roll (1 to 6)
+        
+        let diceRoll = Math.floor(Math.random() * 6) + 1;
+        console.log("Dice Roll: ", diceRoll);
+
+        // Move the player
+        currentPlayerPosition = (currentPlayerPosition + diceRoll) % numberOfSpacesOnBoard();
+        console.log("Player Position: ", currentPlayerPosition);
+
+        // Handle the task at the new position
+        handleTask(currentPlayerPosition);
+        movePlayerMarker(currentPlayerPosition);
+    });
+
+    function handleTask(position) {
+        const task = getTaskForPosition(position);
+    
+    if (task) {
+        // Update the current task display
+        currentTask.textContent = `Task: ${task.description}`;
+
+        // Simulate task completion (in a real game, you would check if the player actually completed the task)
+        completeTask(task.reward); // Add the task's reward to the player's funds
+    } else {
+        // Handle no task found or invalid position
+        currentTask.textContent = 'No task found. Rest and relax!';
+    }
+    }
+
+    function updateFunds(amount) {
+        // Update player funds
+        playerFunds += amount;
+        playerFundsDisplay.textContent = `Funds: $${playerFunds}`;
+    }
+
+    function getTaskForPosition(position) {
+    // Define your tasks here
+    const tasks = [
+        { description: "Start", reward: 0 },
+        { description: "Help your neighbor with yard work and earn $5.", reward: 5 },
+        { description: "Complete a math quiz and earn $3.", reward: 3 },
+        { description:"Yard Work for Neighbors: Help a neighbor by mowing their lawn and trimming the hedges", reward: 8},
+        { description:"Bake Sale Bonanza: Bake cookies and cupcakes and sell them at a stand.", reward: 10},
+        { description:"Pet-Sitting Pals: Take care of a neighbor's pet while they're away for the weekend.", reward: 12},
+        { description:"Bookworm's Review: Read and write a review for a new children's book.", reward: 5},
+        { description:"Recycling Ranger: Collect and sort recyclables in the neighborhood, then take them to the recycling center.", reward: 5},
+        { description:""}
+    ];
+
+    return tasks[position];
+}
+
+
+    function numberOfSpacesOnBoard() {
+        // Return the total number of spaces on your game board
+        return document.querySelectorAll('.taskSpace').length;
+    }
+
+    function movePlayerMarker(position) {
+        const targetSpace = document.querySelector(`#space${position}`);
+        if (targetSpace) {
+            const spaceRect = targetSpace.getBoundingClientRect();
+            playerMarker.style.top = `${spaceRect.top}px`;
+            playerMarker.style.left = `${spaceRect.left}px`;
+        }
+    }
+
+    function updateFundsDisplay() {
+    playerFundsDisplay.textContent = `Current Funds: $${playerFunds.toFixed(2)}`;
+}
+
+function getTaskForSpace(spaceNumber) {
+    // For a linear board, return the task based on space number
+    return tasks[spaceNumber % tasks.length]; // Modulo to loop back to the start of the tasks
+}
+
+function landOnSpace(spaceNumber) {
+    const task = getTaskForSpace(spaceNumber);
+
+    // Present the task to the player
+    currentTask.textContent = `Task: ${task.description}`;
+    
+    // Assume the task is completed for simplicity
+    completeTask(task.reward);
+}
+
+
+function completeTask(reward) {
+    playerFunds += reward;
+    updateFundsDisplay();
+    updateGoalProgressDisplay(playerFunds);
+
+
+    function handleVariableEarningsTask(task) {
+    // Simulate or interactively determine the number of customers
+    const customers = simulateCustomers(); // Or get input from the player
+
+    // Calculate the earnings
+    const earnings = customers * task.reward;
+
+    // Update the task description with the actual earnings
+    currentTask.textContent = `Task: ${task.description}. You served ${customers} customers and earned $${earnings}.`;
+
+    // Update the player's funds
+    completeTask(earnings);
+}
+
+function simulateCustomers() {
+    // Simulate a random number of customers between 1 and 5 for example
+    return Math.floor(Math.random() * 5) + 1;
+}
+
+
+const randomEvents = [
+    {
+        name: "Lucky Draw",
+        description: "You won $10 in a lucky draw!",
+        effect: 10 // Positive value for gains
+    },
+    {
+        name: "Broken Phone",
+        description: "Oh no! You dropped your phone. Repairs cost $15.",
+        effect: -15 // Negative value for costs
+    },
+    {
+        name: "Found Money",
+        description: "You find $5 on the street.",
+        effect: 5
+    },
+    {
+        name: "Charity",
+        description: "You donate $5 to charity.",
+        effect: -5
+    },
+    // ... other random events ...
+];
+
+function triggerRandomEvent() {
+    // Choose a random event
+    const randomEvent = randomEvents[Math.floor(Math.random() * randomEvents.length)];
+    
+    // Update the current task description
+    currentTask.textContent = `Random Event: ${randomEvent.description}`;
+    
+    // Update player funds based on the event
+    updateFunds(randomEvent.effect);
+}
+
+
+}
+
+
+
+
+
+
+
+let financialGoal = 0;
+
+document.getElementById('setGoal').addEventListener('click', () => {
+    financialGoal = parseInt(document.getElementById('financialGoal').value, 10);
+    updateGoalProgressDisplay(0); // Initialize goal progress
+    // You may want to hide the goal setting interface or disable it after setting the goal
+});
+
+function updateGoalProgressDisplay(currentFunds) {
+  
+  const goalProgressElement = document.getElementById('goalProgress');
+    goalProgressElement.textContent = `Goal Progress: $${currentFunds} / $${financialGoal}`;
+    // Optionally, you could visually show progress, e.g., with a progress bar
+    // Check if the goal has been met or exceeded
+    if(currentFunds >= financialGoal) {
+        goalProgress.textContent += ' - Goal Reached!';
+        // Implement any additional logic for when the goal is reached
+    }
+    // Rest of the function...
+
+}
+
+// Call this function whenever the player's funds are updated
+function updateFunds(amount) {
+    playerFunds += amount;
+    updateFundsDisplay(); // Update the funds display
+    updateGoalProgressDisplay(playerFunds); // Update the goal progress
+}
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  let slideIndex = 0;
+showSlides("custom_slides1");
+setTimeout(function(){
+  showSlides("custom_slides2");
+}, 1000)
+setTimeout(function(){
+  showSlides("custom_slides3")
+}, 600)
+setTimeout(function(){
+  showSlides("custom_slides4")
+}, 750)
+setTimeout(function(){
+  showSlides("custom_slides5")
+}, 1500)
+
+
+function showSlides(class_slide) {
+  let i;
+  let slides = document.getElementsByClassName(class_slide);
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(function(){
+    showSlides(class_slide);
+  }, 2000); // Change image every 2 seconds
+}
+    </script>
+</body>
+
+</html>
